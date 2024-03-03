@@ -17,7 +17,57 @@
 
 <body>
     <header class="px-5 md:px-20 lg:px-32">
-
+        <nav>
+            <div class="navbar bg-base-100">
+                <div class="navbar-start">
+                    <div class="dropdown">
+                        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 6h16M4 12h8m-8 6h16" />
+                            </svg>
+                        </div>
+                        <div tabindex="0"
+                            class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 space-y-3">
+                            <div class="tooltip h-10 text-lg w-10 border-2 border-gray-700 rounded-full"
+                                data-tip="home">
+                                <i class="fa-solid fa-house pt-2"></i>
+                            </div>
+                            <div class="tooltip h-10 text-lg w-10 border-2 border-gray-700 rounded-full"
+                                data-tip="tooltip">
+                                <i class="fa-solid fa-pen pt-2"></i>
+                            </div>
+                            <div class="tooltip h-10 text-lg w-10 border-2 border-gray-700 rounded-full" data-tip="add">
+                                <i class="fa-solid fa-user-plus pt-2"></i>
+                            </div>
+                            <div class="tooltip h-10 text-lg w-10 border-2 border-gray-700 rounded-full" data-tip="f;ag">
+                                <i class="fa-regular fa-flag pt-2"></i>
+                            </div>
+                            <a class="py-2 text-center font-bold bg-[#797DFC] text-white rounded-full px-8">Sign In</a>
+                        </div>
+                    </div>
+                    <a class="btn btn-ghost text-xl">daisyUI</a>
+                </div>
+                <div class="navbar-end hidden lg:flex">
+                    <div class="menu menu-horizontal px-1 space-x-5">
+                        <div class="tooltip h-10 text-xl w-10 border-2 border-gray-700 rounded-full" data-tip="home">
+                            <i class="fa-solid fa-house pt-2"></i>
+                        </div>
+                        <div class="tooltip h-10 text-xl w-10 border-2 border-gray-700 rounded-full" data-tip="tooltip">
+                            <i class="fa-solid fa-pen pt-2"></i>
+                        </div>
+                        <div class="tooltip h-10 text-xl w-10 border-2 border-gray-700 rounded-full" data-tip="add">
+                            <i class="fa-solid fa-user-plus pt-2"></i>
+                        </div>
+                        <div class="tooltip h-10 text-xl w-10 border-2 border-gray-700 rounded-full" data-tip="flag">
+                            <i class="fa-regular fa-flag pt-2"></i>
+                        </div>
+                    </div>
+                    <a class="btn bg-[#797DFC] text-white rounded-full px-8">Sign In</a>
+                </div>
+            </div>
+        </nav>
     </header>
     <main class="px-3 md:px-20 lg:px-32">
 
@@ -86,7 +136,8 @@
                 </div>
             </div>
             <!-- discuss banner -->
-            <div class="mt-9 md:mt-12 lg:mt-24 p-3 md:p-10 lg:p-16 gap-10 bg-[#12132D] flex flex-col lg:flex-row rounded-3xl">
+            <div
+                class="mt-9 md:mt-12 lg:mt-24 p-3 md:p-10 lg:p-16 gap-10 bg-[#12132D] flex flex-col lg:flex-row rounded-3xl">
                 <div class="space-y-4 text-center lg:text-start">
                     <h2 class="font-black text-2xl md:text-3xl lg:text-4xl text-white">Join Our Forum</h2>
                     <p class="text-[#FFFFFFCC] text-lg">
@@ -95,10 +146,11 @@
                         the results directly within the app.
                     </p>
                     <br>
-                    <button class="btn text-xl font-bold text-white px-7 bg-[#797DFC] border-0 rounded-3xl">Registered Now</button>
+                    <button class="btn text-xl font-bold text-white px-7 bg-[#797DFC] border-0 rounded-3xl">Registered
+                        Now</button>
                 </div>
                 <div>
-                    <img src="images/joinforum.png" class="md:mx-auto" alt="">
+                    <img src="images/joinforum.png" class="mx-auto" alt="">
                 </div>
             </div>
         </section>
