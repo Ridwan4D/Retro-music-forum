@@ -14,7 +14,7 @@ function displayData(dataArray){
         div.innerHTML = `
             <div class="flex flex-col md:flex-row p-3 md:p-7 lg:p-10 gap-3 md:gap-5 bg-[#f1f2ff] rounded-3xl">
                 <div class="relative">
-                    <i class="fa-solid fa-circle absolute right-16 md:-right-1 -top-1 actives"></i>
+                    <i class="fa-solid fa-circle absolute right-16 md:-right-1 -top-1 ${post.isActive? "text-[#10B981]":"text-[#FF3434]"}"></i>
                     <img src="${post.image}" alt="" class="rounded-2xl w-6/12 mx-auto md:m-0 md:w-24">
                 </div>
                     <div class="space-y-3">
