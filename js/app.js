@@ -4,7 +4,7 @@ const loadDiscussData = async () => {
     const dataArray = data.posts;
     const discussPostPatent = document.getElementById("discuss-post-parent");
     dataArray.forEach(post => {
-        console.log(post);
+        // console.log(post);
         const div = document.createElement("div");
         div.innerHTML = `
             <div class="flex flex-col md:flex-row p-3 md:p-7 lg:p-10 gap-3 md:gap-5 bg-[#f1f2ff] rounded-3xl">
@@ -14,37 +14,63 @@ const loadDiscussData = async () => {
                 </div>
                     <div class="space-y-3">
                         <div class="font-inter flex text-sm gap-3 text-[#12132DCC]">
-                            <p>#${post.}</p>
-                            <p>Author:Ridwanul Islam</p>
+                            <p>#${post.category}</p>
+                            <p>Author:${post.author?.name || "Unknown"}</p>
                         </div>
-                        <h3 class="text-xl font-bold text-[#12132D]">10 Kids Unaware of Their Halloween Costume</h3>
-                        <p class="text-[#12132D99] border-b-2 border-dashed pb-3"> It’s one thing to subject yourself to ha Halloween costume mishap</p>
+                        <h3 class="text-xl font-bold text-[#12132D]">${post.title}</h3>
+                        <p class="text-[#12132D99] border-b-2 border-dashed pb-3">${post.description}</p>
                         <div class="flex justify-between">
                             <div class="flex items-center gap-5 md:gap-8 text-[#12132D99]">
                                 <div class="flex justify-center items-center gap-2">
                                     <i class="fa-regular fa-message"></i>
-                                    <p>500</p>
+                                    <p>${post.comment_count}</p>
                                 </div>
                                 <div class="flex justify-center items-center gap-2">
                                     <i class="fa-regular fa-eye"></i>
-                                    <p>500</p>
+                                    <p>${post.view_count}</p>
                                 </div>
                                 <div class="flex justify-center items-center gap-2">
                                     <i class="fa-regular fa-clock"></i>
-                                    <p>500</p>
+                                    <p>${post.posted_time}</p>
                                 </div>
                             </div>
                             <div class="h-7 w-7 flex justify-center items-center rounded-full bg-[#10B981]">
-                                <i class="fa-solid fa-envelope-open text-white cursor-pointer"></i>
+                                <button id="read" class="add-btn">
+                                    <i class="fa-solid fa-envelope-open text-white cursor-pointer"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
             </div>
         `;
         discussPostPatent.appendChild(div);
+
     })
-}
+    const allBtn = document.getElementsByClassName("add-btn");
+    const titleContainer = document.getElementById("title-container")
+    for (const btn of allBtn) {
+        btn.addEventListener("click", function (e) {
+            const postTitle = e.target.parentNode.parentNode.parentNode.parentNode.childNodes[3].innerText;
+            const postView = e.target.parentNode.parentNode.parentNode.childNodes[1].childNodes[3].childNodes[3].innerText;
+            // console.log(postView);
+            const div = document.createElement("div");
+            div.classList.add("p-4", "rounded-2xl", "flex", "justify-between", "bg-white", "mt-2");
+            div.innerHTML = `
+            <p class="font-semibold text-[#12132D]">${postTitle}</p>
+            <div class="flex justify-center items-center gap-2">
+                <i class="fa-regular fa-eye"></i>
+                <p>${postView}</p>
+            </div>
+            `;
+            titleContainer.appendChild(div);
+            e.target.setAttribute("disabled",true)
+        })
+    }
+};
 loadDiscussData();
+
+
+
 
 const loadPostsData = async () => {
     const res = await fetch("https://openapi.programming-hero.com/api/retro-forum/latest-posts");
