@@ -1,15 +1,20 @@
-const loadDiscussData = async () => {
-    const res = await fetch("https://openapi.programming-hero.com/api/retro-forum/posts");
+const loadDiscussData = async (category) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?category=${category}`);
     const data = await res.json();
     const dataArray = data.posts;
+    displayData(dataArray);    
+};
+
+function displayData(dataArray){
     const discussPostPatent = document.getElementById("discuss-post-parent");
+    discussPostPatent.textContent = "";
     dataArray.forEach(post => {
         // console.log(post);
         const div = document.createElement("div");
         div.innerHTML = `
             <div class="flex flex-col md:flex-row p-3 md:p-7 lg:p-10 gap-3 md:gap-5 bg-[#f1f2ff] rounded-3xl">
                 <div class="relative">
-                    <i class="fa-solid fa-circle absolute right-16 md:-right-1 -top-1 text-green-500"></i>
+                    <i class="fa-solid fa-circle absolute right-16 md:-right-1 -top-1 actives"></i>
                     <img src="${post.image}" alt="" class="rounded-2xl w-6/12 mx-auto md:m-0 md:w-24">
                 </div>
                     <div class="space-y-3">
@@ -44,14 +49,17 @@ const loadDiscussData = async () => {
             </div>
         `;
         discussPostPatent.appendChild(div);
-
     })
+    toggleSpinner(false)
+
     const allBtn = document.getElementsByClassName("add-btn");
     const titleContainer = document.getElementById("title-container")
     for (const btn of allBtn) {
         btn.addEventListener("click", function (e) {
             const postTitle = e.target.parentNode.parentNode.parentNode.parentNode.childNodes[3].innerText;
             const postView = e.target.parentNode.parentNode.parentNode.childNodes[1].childNodes[3].childNodes[3].innerText;
+            const disableBtn = e.target.parentNode;
+            disableBtn.setAttribute("disabled", true)
             // console.log(postView);
             const div = document.createElement("div");
             div.classList.add("p-4", "rounded-2xl", "flex", "justify-between", "bg-white", "mt-2");
@@ -63,11 +71,10 @@ const loadDiscussData = async () => {
             </div>
             `;
             titleContainer.appendChild(div);
-            e.target.setAttribute("disabled",true)
+            increaseValue("count");
         })
     }
-};
-loadDiscussData();
+}
 
 
 
@@ -101,3 +108,33 @@ const loadPostsData = async () => {
     });
 }
 loadPostsData();
+
+
+function increaseValue (id){
+    const elementText = document.getElementById(id).innerText;
+    const element = parseInt(elementText);
+    const sum = element + 1
+    document.getElementById("count").innerText = sum;
+}
+
+
+function handleSearch(){
+    toggleSpinner(true)
+    const value = document.getElementById("search-box").value;
+    if(value){
+        setTimeout(() => {
+            loadDiscussData(value)
+        }, 2000);
+    }else{
+        alert("Please enter a category")
+    }
+}
+
+function toggleSpinner(isLoading){
+    const loading = document.getElementById("loading-spinner");
+    if(isLoading){
+        loading.classList.remove("hidden")
+    }else{
+        loading.classList.add("hidden")
+    }
+}
